@@ -23,16 +23,21 @@ $this->start_controls_section(
                     'step' => 1
                 ],
                 '%' => [
-                    'min' => 0,
+                    'min' => 1,
                     'max' => 100,
+                    'step' => 1,
                 ]
             ],
             'default' => [ 
                 'unit' => 'px',
                 'size' => 100 
-            ], 
-        ]
-        );
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .navbar-logo' => 'width: {{SIZE}}{{UNIT}};',
+            ] 
+        ],
+        
+    );
 
 $this->end_controls_section();
 // End Logo control
@@ -60,7 +65,10 @@ $this->add_responsive_control(
                 'step' => 1
             ]
         ],
-    ]
+        'selectors' => [
+            '{{WRAPPER}} .navbar-menu > li:not(:last-child)' => 'margin-right: {{SIZE}}{{UNIT}};',
+        ],
+    ],
 );
 
 // Menu Typography
@@ -69,6 +77,7 @@ $this->add_group_control(
     [
         'name' => 'menu_typography',
         'label' => __( 'Typography', 'navbar' ),
+        'selector' => '{{WRAPPER}} .navbar-menu > ul > li > a',
     ]
 );
 
@@ -82,7 +91,10 @@ $this->start_controls_tab( 'menu_normal_tab', [ 'label' => __( 'Normal', 'navbar
         [
             'label' => __( 'Text Color', 'navbar' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-        ]
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > li > a' => 'color: {{VALUE}};',
+            ],
+        ],
     );
 
     $this->add_control(
@@ -90,7 +102,10 @@ $this->start_controls_tab( 'menu_normal_tab', [ 'label' => __( 'Normal', 'navbar
         [
             'label' => __( 'Pointer Color', 'navbar' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-        ]
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > li > a::before' => 'background-color: {{VALUE}};',
+            ],
+        ]        
     );
 
     $this->add_control(
@@ -105,6 +120,9 @@ $this->start_controls_tab( 'menu_normal_tab', [ 'label' => __( 'Normal', 'navbar
                 'slide' => __( 'Slide', 'navbar' ),
                 'grow'  => __( 'Grow', 'navbar' ),
             ],
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > ul > li > a::before' => 'transition: all 0.3s;',
+            ],
         ]
     );
 $this->end_controls_tab();
@@ -116,7 +134,11 @@ $this->start_controls_tab( 'menu_hover_tab', [ 'label' => __( 'Hover', 'navbar' 
         [
             'label' => __( 'Text Color', 'navbar' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-        ]
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > li > a:hover' => 'color: {{VALUE}};',
+            ],
+        ],
+        
     );
 
     $this->add_control(
@@ -124,7 +146,11 @@ $this->start_controls_tab( 'menu_hover_tab', [ 'label' => __( 'Hover', 'navbar' 
         [
             'label' => __( 'Pointer Color', 'navbar' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-        ]
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > li > a:hover::before' => 'background-color: {{VALUE}};',
+            ],
+        ],
+        
     );
 
     $this->add_control(
@@ -139,6 +165,9 @@ $this->start_controls_tab( 'menu_hover_tab', [ 'label' => __( 'Hover', 'navbar' 
                 'slide' => __( 'Slide', 'navbar' ),
                 'grow'  => __( 'Grow', 'navbar' ),
             ],
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > ul > li > a:hover::before' => 'transition: all 0.3s;',
+            ],
         ]
     );
 $this->end_controls_tab();
@@ -150,7 +179,10 @@ $this->start_controls_tab( 'menu_active_tab', [ 'label' => __( 'Active', 'navbar
         [
             'label' => __( 'Text Color', 'navbar' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-        ]
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > li.current-menu-item > a' => 'color: {{VALUE}};',
+            ],
+        ],        
     );
 
     $this->add_control(
@@ -158,7 +190,10 @@ $this->start_controls_tab( 'menu_active_tab', [ 'label' => __( 'Active', 'navbar
         [
             'label' => __( 'Pointer Color', 'navbar' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-        ]
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > li.current-menu-item > a::before' => 'background-color: {{VALUE}};',
+            ],
+        ],
     );
 
     $this->add_control(
@@ -172,6 +207,9 @@ $this->start_controls_tab( 'menu_active_tab', [ 'label' => __( 'Active', 'navbar
                 'fade'  => __( 'Fade', 'navbar' ),
                 'slide' => __( 'Slide', 'navbar' ),
                 'grow'  => __( 'Grow', 'navbar' ),
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .navbar-menu > ul > li.current-menu-item > a::before' => 'transition: all 0.3s;',
             ],
         ]
     );
@@ -197,6 +235,7 @@ $this->add_group_control(
     [
         'name' => 'button_typography',
         'label' => __( 'Typography', 'navbar' ),
+        'selector' => '{{WRAPPER}} .navbar-button',
     ]
 );
 
@@ -248,7 +287,11 @@ $this->add_control(
     [
         'label' => __( 'Text Color', 'navbar' ),
         'type' => \Elementor\Controls_Manager::COLOR,
-    ]
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button' => 'color: {{VALUE}};',
+        ],
+    ],
+    
 );
 
 $this->add_control(
@@ -256,7 +299,11 @@ $this->add_control(
     [
         'label' => __( 'Icon Color', 'navbar' ),
         'type' => \Elementor\Controls_Manager::COLOR,
-    ]
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button i' => 'color: {{VALUE}};',
+        ],
+    ],
+    
 );
 
 $this->add_control(
@@ -264,7 +311,11 @@ $this->add_control(
     [
         'label' => __( 'Background Color', 'navbar' ),
         'type' => \Elementor\Controls_Manager::COLOR,
-    ]
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button' => 'background-color: {{VALUE}};',
+        ],
+    ],
+    
 );
 
 $this->add_control(
@@ -288,6 +339,22 @@ $this->add_control(
         'condition' => [
             'button_border_normal' => 'yes',
         ],
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
+    ]
+);
+
+// Button Padding
+$this->add_responsive_control(
+    'button_padding',
+    [
+        'label' => __( 'Padding', 'navbar' ),
+        'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        'size_units' => [ 'px', '%', 'em' ],
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
     ]
 );
 
@@ -309,6 +376,9 @@ $this->add_control(
     [
         'label' => __( 'Text Color', 'navbar' ),
         'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button:hover' => 'color: {{VALUE}};',
+        ],
     ]
 );
 
@@ -317,6 +387,9 @@ $this->add_control(
     [
         'label' => __( 'Icon Color', 'navbar' ),
         'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button:hover i' => 'color: {{VALUE}};',
+        ],
     ]
 );
 
@@ -325,6 +398,9 @@ $this->add_control(
     [
         'label' => __( 'Background Color', 'navbar' ),
         'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button:hover' => 'background-color: {{VALUE}};',
+        ],
     ]
 );
 
@@ -348,6 +424,21 @@ $this->add_control(
         'size_units' => [ 'px', '%' ],
         'condition' => [
             'button_border_hover' => 'yes',
+        ],
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
+    ]
+);
+// Button Padding
+$this->add_responsive_control(
+    'button_padding',
+    [
+        'label' => __( 'Padding', 'navbar' ),
+        'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        'size_units' => [ 'px', '%', 'em' ],
+        'selectors' => [
+            '{{WRAPPER}} .navbar-button a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
         ],
     ]
 );
@@ -450,6 +541,9 @@ $this->add_control(
         'condition' => [
             'bottom_border' => 'yes',
         ],
+        'selectors' => [
+            '{{WRAPPER}} .navbar' => 'border-bottom-color: {{VALUE}};',
+        ],
     ]
 );
 
@@ -473,6 +567,9 @@ $this->add_control(
         ],
         'condition' => [
             'bottom_border' => 'yes',
+        ],
+        'selectors' => [
+            '{{WRAPPER}} .navbar' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
         ],
     ]
 );

@@ -24,10 +24,18 @@
  */
 function register_navbar_widget( $widgets_manager ) {
 
-    require_once( __DIR__ . '/widgets/navbar-widget.php' );
+    require_once( __DIR__ . '/widgets/class-navbar-widget.php' );
 
     $widgets_manager->register( new \Navbar_Widget() );
     
 }
 
 add_action( 'elementor/widgets/register', 'register_navbar_widget' );
+
+/**
+ * Enqueue widget styles
+ */
+function enqueue_widget_styles() {
+    wp_enqueue_style( 'navbar-style', plugins_url( 'assets/css/navbar.css', __FILE__ ), array( 'elementor-frontend' ), '1.0.0', 'all' );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_widget_styles', 20 );

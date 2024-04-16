@@ -1,0 +1,151 @@
+.navbar {
+    background-color: #F3F5F8;
+}
+
+.navbar-full-width {
+    width: 100%;
+    
+}
+
+.navbar-full-width .navbar-container {
+    max-width: none;
+}
+
+
+
+.navbar-left {
+    flex-direction: row;
+}
+
+.navbar-left .navbar-logo {
+    order: 1;
+}
+
+.navbar-left .navbar-menu {
+    order: 2;
+}
+
+.navbar-left .navbar-button {
+    order: 3;
+}
+  
+.navbar-right {
+    flex-direction: row-reverse;
+}
+
+.navbar-right .navbar-logo {
+    order: 3;
+}
+
+.navbar-right .navbar-menu {
+    order: 2;
+}
+
+.navbar-right .navbar-button {
+    order: 1;
+}
+  
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+  
+  .navbar-logo {
+    flex: 0 0 auto;
+  }
+  
+  .navbar-menu {
+    flex: 1 1 auto;
+  }
+  
+  .navbar-menu-left {
+    text-align: left;
+  }
+  
+  .navbar-menu-center {
+    text-align: center;
+  }
+  
+  .navbar-menu-right {
+    text-align: right;
+  }
+  
+  .navbar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-menu > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-menu > ul > li {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .navbar-menu > ul > li > a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-menu > ul > li > a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s, height 0.3s;
+}
+
+.navbar-pointer-none .navbar-menu > ul > li > a::before {
+    display: none;
+}
+
+.navbar-pointer-underline .navbar-menu > ul > li > a::before {
+    height: 2px;
+}
+
+.navbar-pointer-background .navbar-menu > ul > li > a::before {
+    height: 100%;
+    opacity: 0;
+}
+
+.navbar-pointer-background .navbar-menu > ul > li > a:hover::before,
+.navbar-pointer-background .navbar-menu > ul > li.current-menu-item > a::before {
+    opacity: 1;
+}
+  
+  .navbar-menu > ul > li > a:hover {
+    color: #000;
+  }
+  
+  .navbar-menu > ul > li > a:hover::before {
+    background-color: #000; 
+  }
+  
+  .navbar-menu > ul > li.current-menu-item > a {
+    color: #000;
+  }
+  
+  .navbar-menu > ul > li.current-menu-item > a::before {
+    background-color: #000;
+  }
+  
+  .navbar-menu li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .navbar-button {
+    flex: 0 0 auto;
+  }

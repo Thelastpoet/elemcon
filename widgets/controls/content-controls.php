@@ -49,7 +49,7 @@ $this->add_control(
                 'icon' => 'eicon-h-align-right',
             ],
         ],
-        'default' => 'right',
+        'default' => 'center',
         'toggle' => true,
     ]
 );
