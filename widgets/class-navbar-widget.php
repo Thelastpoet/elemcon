@@ -235,11 +235,6 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'label' => __( 'Icon', 'navbar' ),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'skin' => 'inline',
-                'default' => [
-                    'value' => 'fas fa-chevron-right', 
-                    'library' => 'solid', 
-                ],
-                
             ]
         );
 
@@ -1406,7 +1401,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                         <?php foreach ($menu_items as $index => $item) :
                             $item_link = $item['menu_link']['url'];
                             $item_text = $item['menu_title'];
-                            $active_class = ($item_link === $_SERVER['REQUEST_URI']) ? 'current-menu-item' : '';
+                            $active_class = ($item_link === get_permalink()) ? 'current-menu-item' : '';
                             ?>
                             <li class="<?php echo esc_attr($active_class); ?>">
                                 <a href="<?php echo esc_url($item_link); ?>"><?php echo esc_html($item_text); ?></a>
@@ -1467,11 +1462,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             <div class="{{{ containerClasses }}}">
                 <div class="navbar-logo">
                     <# if (logoType === 'site_logo' && siteLogo) { #>
-                        <a href="{{ settings.home_url }}">
-                            <img src="{{ siteLogo }}" alt="{{ settings.blog_name }}">
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <img src="{{ siteLogo }}" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
                         </a>
                     <# } else if (logoType === 'site_title') { #>
-                        <a href="{{ settings.home_url }}">{{ settings.blog_name }}</a>
+                        <a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html(get_bloginfo('name')); ?></a>
                     <# } #>
                 </div>
     
@@ -1480,7 +1475,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                         <# _.each(menuItems, function(item, index) {
                             var itemLink = item.menu_link.url;
                             var itemText = item.menu_title;
-                            var activeClass = (itemLink === '#') ? 'current-menu-item' : '';
+                            var activeClass = (itemLink === '<?php echo esc_url(get_permalink()); ?>') ? 'current-menu-item' : '';
                             #>
                             <li class="menu-item {{ activeClass }}">
                                 <a href="{{ itemLink }}">{{ itemText }}</a>

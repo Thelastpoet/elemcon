@@ -18,7 +18,7 @@
 }
 
 /**
- * Register Navbar widge
+ * Register Navbar widget
  */
 function register_navbar_widget( $widgets_manager ) {
 
