@@ -1,13 +1,11 @@
 <?php
 /**
- * Plugin Name: Elementor Navbar Widget
- * Description: A custom Elementor widget to allow beginners to use complex layouts on Elementor like the header container.
+ * Plugin Name: Elementor Navbar Jumbo Widget
+ * Description: A custom Elementor Navbar widget.
  * Version: 1.0
  * Author: Emmanuel Chekumbe
  * Requires at least: 5.9
  * Requires PHP: 7.4
- * License: GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: elemcon
  * 
  * Requires Plugins: elementor

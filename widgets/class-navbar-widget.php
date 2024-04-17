@@ -197,7 +197,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'button_section',
             [
-                'label' => __( 'Button', 'navbar' ),
+                'label' => __( 'CTA Button', 'navbar' ),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -218,7 +218,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_link',
             [
-                'label' => __( 'Button Link', 'navbar' ),
+                'label' => __( 'Link', 'navbar' ),
                 'type' => \Elementor\Controls_Manager::URL,
                 'dynamic' => [
                     'active' => true, 
@@ -279,9 +279,40 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     ],
                     'selectors' => [
                         '{{WRAPPER}} .navbar-logo' => 'width: {{SIZE}}{{UNIT}};',
-                    ] 
+                    ],
+                    'condition' => [
+                        'logo_type' => 'site_logo',
+                    ],
                 ],
                 
+            );
+
+            // Logo Site title 
+            $this->add_control(
+                'site_title_color',
+                [
+                    'label' => __( 'Text Color', 'navbar' ),
+                    'type' => \Elementor\Controls_Manager::COLOR,
+                    'default' => '#000000',
+                    'selectors' => [
+                        '{{WRAPPER}} .navbar-logo a' => 'color: {{VALUE}};',
+                    ],
+                    'condition' => [
+                        'logo_type' => 'site_title',
+                    ],
+                ]
+            );
+            
+            $this->add_group_control(
+                \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name' => 'site_title_typography',
+                    'label' => __( 'Typography', 'navbar' ),
+                    'selector' => '{{WRAPPER}} .navbar-logo a',
+                    'condition' => [
+                        'logo_type' => 'site_title',
+                    ],
+                ]
             );
 
         $this->end_controls_section();
@@ -374,6 +405,18 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             );
 
             $this->add_control(
+                'menu_pointer_initial_state',
+                [
+                    'label' => __( 'Pointer Initial State', 'navbar' ),
+                    'type' => \Elementor\Controls_Manager::HIDDEN,
+                    'default' => '',
+                    'selectors' => [
+                        '{{WRAPPER}} .navbar-menu > ul > li > a::before' => 'content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: transparent; transform: scaleX(0); transition: transform 0.3s;',
+                    ],
+                ]
+            );
+
+            $this->add_control(
                 'menu_pointer_color_normal',
                 [
                     'label' => __( 'Pointer Color', 'navbar' ),
@@ -451,6 +494,9 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     ],
                     'selectors' => [
                         '{{WRAPPER}} .navbar-menu > ul > li > a:hover::before' => 'transition: all 0.3s;',
+                    ],
+                    'condition' => [
+                        'pointer' => [ 'underline', 'background' ],
                     ],
                 ]
             );
@@ -641,7 +687,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'label_on' => __( 'Yes', 'navbar' ),
                 'label_off' => __( 'No', 'navbar' ),
                 'return_value' => 'yes',
-                'default' => 'no',
+                'default' => 'yes',
             ]
         );
 
@@ -676,7 +722,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .navbar-button a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .navbar-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'default' => [
                     'top' => '12',
@@ -744,7 +790,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'label_on' => __( 'Yes', 'navbar' ),
                 'label_off' => __( 'No', 'navbar' ),
                 'return_value' => 'yes',
-                'default' => 'no',
+                'default' => 'yes',
             ]
         );
 
@@ -770,27 +816,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 ],
             ]
         );
-        // Button Padding
-        $this->add_responsive_control(
-            'button_padding',
-            [
-                'label' => __('Padding', 'navbar'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .navbar-button a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'default' => [
-                    'top' => '12',
-                    'right' => '32',
-                    'bottom' => '12',
-                    'left' => '32',
-                    'unit' => 'px',
-                    'isLinked' => false,
-                ],
-            ]
-        );
-
+        
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -856,6 +882,9 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'label_off' => __( 'No', 'navbar' ),
                 'return_value' => 'yes',
                 'default' => 'no',
+                'selectors' => [
+                    '{{WRAPPER}} .navbar' => 'border-bottom-style: {{VALUE}}; border-bottom-width: {{bottom_border_width.SIZE}}{{bottom_border_width.UNIT}}; border-bottom-color: {{bottom_border_color}};',
+                ],
             ]
         );
 
@@ -876,6 +905,9 @@ class Navbar_Widget extends \Elementor\Widget_Base {
 
                 'condition' => [
                     'bottom_border' => 'yes',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .navbar' => 'border-bottom-style: {{VALUE}};',
                 ],
             ]
         );
@@ -945,6 +977,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'condition' => [
                     'box_shadow' => 'yes',
                 ],
+                'selector' => '{{WRAPPER}} .navbar',
             ]
         );
 
@@ -968,11 +1001,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     'label_on' => __( 'Yes', 'navbar' ),
                     'label_off' => __( 'No', 'navbar' ),
                     'return_value' => 'yes',
-                    'default' => 'no',
+                    'default' => 'yes',
                 ]
             );
             
-            $this->add_control(
+            $this->add_responsive_control(
                 'content_width',
                 [
                     'label' => __( 'Content Width', 'navbar' ),
@@ -981,7 +1014,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     'range' => [
                         'px' => [
                             'min' => 0,
-                            'max' => 1000,
+                            'max' => 2000,
                             'step' => 5,
                         ],
                         '%' => [
@@ -991,9 +1024,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     ],
                     'default' => [
                         'unit' => 'px',
-                        'size' => 500,
+                        'size' => 1250,
                     ],
-                    
+                    'selectors' => [
+                        '{{WRAPPER}} .navbar-container' => 'max-width: {{SIZE}}{{UNIT}};',
+                    ],
                 ]
             );
             
@@ -1016,7 +1051,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     ],
                     'default' => [
                         'unit' => 'px',
-                        'size' => 20,
+                        'size' => 30,
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .navbar' => 'padding-top: {{SIZE}}{{UNIT}};',
                     ],
                 ]
             );
@@ -1040,7 +1078,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     ],
                     'default' => [
                         'unit' => 'px',
-                        'size' => 20,
+                        'size' => 30,
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .navbar' => 'padding-bottom: {{SIZE}}{{UNIT}};',
                     ],
                 ]
             );
@@ -1312,7 +1353,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
 
      protected function render() {
         $settings = $this->get_settings_for_display();
-        
+    
         $navbar_direction = $settings['navbar_direction'];
         $menu_position = $settings['menu_position'];
         $menu_items = $settings['menu_items'];
@@ -1323,263 +1364,123 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $button_text = $settings['button_text'];
         $button_link = $settings['button_link']['url'];
         $button_icon = $settings['button_icon'];
-
-        $this->add_render_attribute( 'navbar', 'class', 'navbar' );
-        $this->add_render_attribute( 'navbar', 'class', 'navbar-' . $navbar_direction );
-        $this->add_render_attribute( 'navbar-menu', 'class', 'navbar-menu' );
-        $this->add_render_attribute( 'navbar-menu', 'class', 'navbar-menu-' . $menu_position );
-        $this->add_render_attribute( 'navbar-menu', 'class', 'navbar-pointer-' . $pointer );
-
-        // Advanced settings
+    
         $full_width = $settings['full_width'];
         $content_width = $settings['content_width'];
         $top_padding = $settings['top_padding'];
         $bottom_padding = $settings['bottom_padding'];
         $element_spacing = $settings['element_spacing'];
-        $apply_effects_on = $settings['apply_effects_on'];
-        $scroll_distance = $settings['scroll_distance'];
-        $sticky = $settings['sticky'];
-        $adjust_on_scroll = $settings['adjust_on_scroll'];
-        $hide_on_scroll = $settings['hide_on_scroll'];
-        $logo_on_scroll = $settings['logo_on_scroll'];
-        $hide_on_desktop = $settings['hide_on_desktop'];
-        $hide_on_tablet = $settings['hide_on_tablet'];
-        $hide_on_mobile = $settings['hide_on_mobile'];
-        $css_id = $settings['css_id'];
-        $css_classes = $settings['css_classes'];
-        $custom_css = $settings['custom_css'];
-        $custom_attributes = $settings['custom_attributes'];
-
-        if ( $full_width === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'navbar-full-width' );
-            $this->add_render_attribute( 'navbar-container', 'class', 'container-fluid' );
-        } else {
-            $this->add_render_attribute( 'navbar-container', 'class', 'container' );
+    
+        $navbar_classes = 'navbar navbar-' . $navbar_direction;
+        $container_classes = 'navbar-container';
+    
+        if ($full_width === 'yes') {
+            $navbar_classes .= ' navbar-full-width';
+            
         }
-
-        $this->add_render_attribute('navbar-container', 'style', 'max-width: ' . $content_width['size'] . $content_width['unit'] . ';');
-        $this->add_render_attribute('navbar', 'style', 'padding-top: ' . $top_padding['size'] . $top_padding['unit'] . ';');
-        $this->add_render_attribute('navbar', 'style', 'padding-bottom: ' . $bottom_padding['size'] . $bottom_padding['unit'] . ';');
-
+    
         if ($element_spacing === 'none') {
-            $this->add_render_attribute('navbar', 'class', 'navbar-no-spacing');
-        }
-
-        $this->add_render_attribute( 'navbar', 'data-effects-on', json_encode( $apply_effects_on ) );
-        $this->add_render_attribute( 'navbar', 'data-scroll-distance', $scroll_distance['size'] );
-        $this->add_render_attribute( 'navbar', 'data-sticky', $sticky );
-        $this->add_render_attribute( 'navbar', 'data-adjust-on-scroll', $adjust_on_scroll );
-        $this->add_render_attribute( 'navbar', 'data-hide-on-scroll', $hide_on_scroll );
-        $this->add_render_attribute( 'navbar', 'data-logo-on-scroll', $logo_on_scroll );
-
-        if ( $hide_on_desktop === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'elementor-hidden-desktop' );
-        }
-        if ( $hide_on_tablet === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'elementor-hidden-tablet' );
-        }
-        if ( $hide_on_mobile === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'elementor-hidden-mobile' );
-        }
-
-        if ( ! empty( $css_id ) ) {
-            $this->add_render_attribute( 'navbar', 'id', $css_id );
-        }
-        if ( ! empty( $css_classes ) ) {
-            $this->add_render_attribute( 'navbar', 'class', $css_classes );
-        }
-
-        if ( ! empty( $css_id ) ) {
-            $this->add_render_attribute( 'navbar', 'id', $css_id );
-        }
-        if ( ! empty( $css_classes ) ) {
-            $this->add_render_attribute( 'navbar', 'class', $css_classes );
+            $navbar_classes .= ' navbar-no-spacing';
         }
     
-        if ( $sticky === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'navbar-sticky' );
-        }
+        $this->add_render_attribute('navbar', 'class', $navbar_classes);
+        $this->add_render_attribute('navbar-container', 'class', $container_classes);
+        $this->add_render_attribute('navbar', 'style', 'padding-top: ' . $top_padding['size'] . $top_padding['unit'] . '; padding-bottom: ' . $bottom_padding['size'] . $bottom_padding['unit'] . ';');
+        $this->add_render_attribute('navbar-menu', 'class', 'navbar-menu navbar-menu-' . $menu_position . ' navbar-pointer-' . $pointer);
     
-        if ( $hide_on_desktop === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'elementor-hidden-desktop' );
-        }
-    
-        if ( $hide_on_tablet === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'elementor-hidden-tablet' );
-        }
-    
-        if ( $hide_on_mobile === 'yes' ) {
-            $this->add_render_attribute( 'navbar', 'class', 'elementor-hidden-mobile' );
-        }
-    
-        if ( ! empty( $css_id ) ) {
-            $this->add_render_attribute( 'navbar', 'id', $css_id );
-        }
-    
-        if ( ! empty( $css_classes ) ) {
-            $this->add_render_attribute( 'navbar', 'class', $css_classes );
-        }
-    
-        if ( ! empty( $custom_attributes ) ) {
-            $attributes = explode( "\n", $custom_attributes );
-            foreach ( $attributes as $attribute ) {
-                if ( ! empty( $attribute ) ) {
-                    $attr = explode( '|', $attribute, 2 );
-                    $attr_key = $attr[0];
-                    $attr_value = isset( $attr[1] ) ? $attr[1] : '';
-                    $this->add_render_attribute( 'navbar', $attr_key, $attr_value );
-                }
-            }
-        }
-
-        $this->add_render_attribute(
-            'navbar',
-            [
-                'data-settings' => json_encode([
-                    'home_url' => esc_url($settings['home_url']),
-                    'blog_name' => esc_attr($settings['blog_name']),
-                ]),
-            ]
-        );
-        
         ?>
-    
-        <div class="navbar" <?php echo $this->get_render_attribute_string( 'navbar' ); ?>>
-                <div class="navbar-container">
-                    <div class="navbar-logo">
-                        <?php if ( $logo_type === 'site_logo' && !empty( $site_logo ) ) : ?>
-                            <a href="<?php echo esc_url( $settings['home_url'] ); ?>">
-                                <img src="<?php echo esc_url( $site_logo ); ?>" alt="<?php echo esc_attr( $settings['blog_name'] ); ?>">
-                            </a>
-                        <?php elseif ( $logo_type === 'site_title' ) : ?>
-                            <a href="<?php echo esc_url( $settings['home_url'] ); ?>"><?php echo esc_html( $site_title ); ?></a>
-                        <?php endif; ?>
-                    </div>
-            
-                    <nav <?php echo $this->get_render_attribute_string( 'navbar-menu' ); ?>>
-                        <ul>
-                            <?php foreach ( $menu_items as $index => $item ) :
-                                $item_link = $item['menu_link']['url'];
-                                $item_text = $item['menu_title'];
-                                $active_class = ($item_link === $_SERVER['REQUEST_URI']) ? 'current-menu-item' : '';
-                                ?>
-                                <li class="<?php echo esc_attr( $active_class ); ?>">
-                                    <a href="<?php echo esc_url( $item_link ); ?>"><?php echo esc_html( $item_text ); ?></a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </nav>
-            
-                    <?php if (!empty($button_text)) : ?>
-                        <div class="navbar-button">
-                            <a href="<?php echo !empty($button_link) ? esc_url($button_link) : 'javascript:void(0);'; ?>">
-                                <?php if ($settings['button_icon_position'] === 'left') : ?>
-                                    <i class="<?php echo esc_attr($button_icon['value']); ?> icon-left"></i>
-                                <?php endif; ?>
-                                <?php echo esc_html($button_text); ?>
-                                <?php if ($settings['button_icon_position'] === 'right') : ?>
-                                    <i class="<?php echo esc_attr($button_icon['value']); ?> icon-right"></i>
-                                <?php endif; ?>
-                            </a>
-                        </div>
+        <div <?php echo $this->get_render_attribute_string('navbar'); ?>>
+            <div <?php echo $this->get_render_attribute_string('navbar-container'); ?>>
+                <div class="navbar-logo">
+                    <?php if ($logo_type === 'site_logo' && !empty($site_logo)) : ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <img src="<?php echo esc_url($site_logo); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
+                        </a>
+                    <?php elseif ($logo_type === 'site_title') : ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>"><?php echo esc_html($site_title); ?></a>
                     <?php endif; ?>
                 </div>
+    
+                <nav <?php echo $this->get_render_attribute_string('navbar-menu'); ?>>
+                    <ul>
+                        <?php foreach ($menu_items as $index => $item) :
+                            $item_link = $item['menu_link']['url'];
+                            $item_text = $item['menu_title'];
+                            $active_class = ($item_link === $_SERVER['REQUEST_URI']) ? 'current-menu-item' : '';
+                            ?>
+                            <li class="<?php echo esc_attr($active_class); ?>">
+                                <a href="<?php echo esc_url($item_link); ?>"><?php echo esc_html($item_text); ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </nav>
+    
+                <?php if (!empty($button_text)) : ?>
+                    <div class="navbar-button">
+                        <a href="<?php echo !empty($button_link) ? esc_url($button_link) : 'javascript:void(0);'; ?>">
+                            <?php if ($settings['button_icon_position'] === 'left') : ?>
+                                <i class="<?php echo esc_attr($button_icon['value']); ?> icon-left"></i>
+                            <?php endif; ?>
+                            <?php echo esc_html($button_text); ?>
+                            <?php if ($settings['button_icon_position'] === 'right') : ?>
+                                <i class="<?php echo esc_attr($button_icon['value']); ?> icon-right"></i>
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
+        </div>
         <?php
     }
 
     protected function content_template() {
         ?>
         <#
-        var menuItems = settings.menu_items;
-        var logoType = settings.logo_type;
-        var siteLogo = settings.site_logo.url;
         var navbarDirection = settings.navbar_direction;
         var menuPosition = settings.menu_position;
+        var menuItems = settings.menu_items;
+        var pointer = settings.pointer;
+        var logoType = settings.logo_type;
+        var siteLogo = settings.site_logo.url;
         var buttonText = settings.button_text;
         var buttonLink = settings.button_link.url;
         var buttonIcon = settings.button_icon;
-
+    
         var fullWidth = settings.full_width;
-        var contentWidth = settings.content_width;
-        var topPadding = settings.top_padding;
-        var bottomPadding = settings.bottom_padding;
         var elementSpacing = settings.element_spacing;
-        var applyEffectsOn = settings.apply_effects_on;
-        var scrollDistance = settings.scroll_distance;
-        var sticky = settings.sticky;
-        var adjustOnScroll = settings.adjust_on_scroll;
-        var hideOnScroll = settings.hide_on_scroll;
-        var logoOnScroll = settings.logo_on_scroll;
-        var hideOnDesktop = settings.hide_on_desktop;
-        var hideOnTablet = settings.hide_on_tablet;
-        var hideOnMobile = settings.hide_on_mobile;
-        var cssID = settings.css_id;
-        var cssClasses = settings.css_classes;
-        var customAttributes = settings.custom_attributes;
-
+    
         var navbarClasses = 'navbar navbar-' + navbarDirection;
-
-        if ( fullWidth === 'yes' ) {
+        var containerClasses = 'navbar-container';
+    
+        if (fullWidth === 'yes') {
             navbarClasses += ' navbar-full-width';
+            containerClasses += ' container-fluid';
+        } else {
+            containerClasses += ' container';
         }
-
-        if ( sticky === 'yes' ) {
-            navbarClasses += ' navbar-sticky';
-        }
-
-        if ( hideOnDesktop === 'yes' ) {
-            navbarClasses += ' elementor-hidden-desktop';
-        }
-
-        if ( hideOnTablet === 'yes' ) {
-            navbarClasses += ' elementor-hidden-tablet';
-        }
-
-        if ( hideOnMobile === 'yes' ) {
-            navbarClasses += ' elementor-hidden-mobile';
-        }
-
-        if ( cssClasses ) {
-            navbarClasses += ' ' + cssClasses;
-        }
-
-        var navbarAttributes = {};
-        if ( cssID ) {
-            navbarAttributes.id = cssID;
-        }
-
-        if ( customAttributes ) {
-            var attributes = customAttributes.split("\n");
-            _.each( attributes, function( attribute ) {
-                if ( attribute ) {
-                    var attr = attribute.split("|");
-                    var attrKey = attr[0];
-                    var attrValue = attr[1] || '';
-                    navbarAttributes[ attrKey ] = attrValue;
-                }
-            });
+    
+        if (elementSpacing === 'none') {
+            navbarClasses += ' navbar-no-spacing';
         }
         #>
-    
-        <div class="{{{ navbarClasses }}}" {{{ _.map( navbarAttributes, function( value, key ) { return key + '="' + value + '"'; } ).join( ' ' ) }}}>
-            <div class="navbar-container">
+        <div class="{{{ navbarClasses }}}">
+            <div class="{{{ containerClasses }}}">
                 <div class="navbar-logo">
-                    <# if ( logoType === 'site_logo' && siteLogo ) { #>
+                    <# if (logoType === 'site_logo' && siteLogo) { #>
                         <a href="{{ settings.home_url }}">
                             <img src="{{ siteLogo }}" alt="{{ settings.blog_name }}">
                         </a>
-                    <# } else if ( logoType === 'site_title' ) { #>
+                    <# } else if (logoType === 'site_title') { #>
                         <a href="{{ settings.home_url }}">{{ settings.blog_name }}</a>
                     <# } #>
                 </div>
-
-                <nav class="navbar-menu navbar-menu-{{ menuPosition }} navbar-pointer-{{ settings.pointer }}">
+    
+                <nav class="navbar-menu navbar-menu-{{ menuPosition }} navbar-pointer-{{ pointer }}">
                     <ul>
-                        <# _.each( menuItems, function( item, index ) {
+                        <# _.each(menuItems, function(item, index) {
                             var itemLink = item.menu_link.url;
                             var itemText = item.menu_title;
-                            var activeClass = ( itemLink === '#' ) ? 'current-menu-item' : '';
+                            var activeClass = (itemLink === '#') ? 'current-menu-item' : '';
                             #>
                             <li class="menu-item {{ activeClass }}">
                                 <a href="{{ itemLink }}">{{ itemText }}</a>
@@ -1588,21 +1489,24 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     </ul>
                 </nav>
     
-            <# if ( buttonText && buttonLink ) { #>
-                <div class="navbar-button">
-                    <a href="{{ buttonLink }}">
-                        <# if ( settings.button_icon_position === 'left' ) { #>
-                            <i class="{{ buttonIcon.value }}"></i>
-                        <# } #>
-                        {{ buttonText }}
-                        <# if ( settings.button_icon_position === 'right' ) { #>
-                            <i class="{{ buttonIcon.value }}"></i>
-                        <# } #>
-                    </a>
-                </div>
-            <# } #>
+                <# if (buttonText && buttonLink) { #>
+                    <div class="navbar-button">
+                        <a href="{{ buttonLink }}">
+                            <# if (settings.button_icon_position === 'left') { #>
+                                <i class="{{ buttonIcon.value }}"></i>
+                            <# } #>
+                            {{ buttonText }}
+                            <# if (settings.button_icon_position === 'right') { #>
+                                <i class="{{ buttonIcon.value }}"></i>
+                            <# } #>
+                        </a>
+                    </div>
+                <# } #>
+            </div>
         </div>
         <?php
+        
     }
+
     
 }
