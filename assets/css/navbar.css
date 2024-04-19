@@ -1,8 +1,10 @@
+/* Navbar container styles */
 .navbar {
-    background-color: #F3F5F8;
-    width: 100%;
+  background-color: #F3F5F8;
+  width: 100%;
 }
 
+/* Full-width navbar styles */
 .navbar-full-width {
   left: 50%;
   margin-left: -50vw;
@@ -11,148 +13,167 @@
   position: relative;
   right: 50%;
   width: 100vw;
-    
 }
 
-.navbar-full-width .navbar-container {
-    max-width: none;
-}
-
+/* Navbar inner container styles */
 .navbar-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
   margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
+/* Left-aligned navbar styles */
 .navbar-left {
-    flex-direction: row;
+  flex-direction: row;
 }
 
 .navbar-left .navbar-logo {
-    order: 1;
+  order: 1;
 }
 
 .navbar-left .navbar-menu {
-    order: 2;
+  order: 2;
 }
 
 .navbar-left .navbar-button {
-    order: 3;
+  order: 3;
 }
-  
+
+/* Right-aligned navbar styles */
 .navbar-right {
-    flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 
 .navbar-right .navbar-logo {
-    order: 3;
+  order: 3;
 }
 
 .navbar-right .navbar-menu {
-    order: 2;
+  order: 2;
 }
 
 .navbar-right .navbar-button {
-    order: 1;
-}
-  
-
-  
-  .navbar-logo {
-    flex: 0 0 auto;
-  }
-  
-  .navbar-menu {
-    flex: 1 1 auto;
-  }
-  
-  .navbar-menu-left {
-    text-align: left;
-  }
-  
-  .navbar-menu-center {
-    text-align: center;
-  }
-  
-  .navbar-menu-right {
-    text-align: right;
-  }
-  
-  .navbar-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .navbar-menu > ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-menu > ul > li {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .navbar-menu > ul > li > a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .navbar-menu > ul > li > a::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: transparent;
-    transition: background-color 0.3s, height 0.3s;
+  order: 1;
 }
 
+/* Navbar logo styles */
+.navbar-logo {
+  flex: 0 0 auto;
+}
+
+/* Navbar menu styles */
+.navbar-menu {
+  flex: 1 1 auto;
+}
+
+/* Left-aligned menu styles */
+.navbar-menu-left {
+  text-align: left;
+}
+
+/* Center-aligned menu styles */
+.navbar-menu-center {
+  text-align: center;
+}
+
+/* Right-aligned menu styles */
+.navbar-menu-right {
+  text-align: right;
+}
+
+/* Reset list styles for menu */
+.navbar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Top-level menu item styles */
+.navbar-menu > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu > ul > li {
+  display: inline-block;
+  position: relative;
+}
+
+.navbar-menu > ul > li > a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Pointer styles */
+.navbar-menu > ul > li > a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s, height 0.3s;
+}
+
+/* Hide pointer for 'none' style */
 .navbar-pointer-none .navbar-menu > ul > li > a::before {
-    display: none;
+  display: none;
 }
 
+/* Underline pointer styles */
 .navbar-pointer-underline .navbar-menu > ul > li > a::before {
-    height: 2px;
+  height: 2px;
 }
 
+/* Background pointer styles */
 .navbar-pointer-background .navbar-menu > ul > li > a::before {
-    height: 100%;
-    opacity: 0;
+  height: 100%;
+  opacity: 0;
 }
 
 .navbar-pointer-background .navbar-menu > ul > li > a:hover::before,
 .navbar-pointer-background .navbar-menu > ul > li.current-menu-item > a::before {
-    opacity: 1;
+  opacity: 1;
 }
-  
-  .navbar-menu > ul > li > a:hover {
-    color: #000;
-  }
-  
-  .navbar-menu > ul > li > a:hover::before {
-    background-color: #000; 
-  }
-  
-  .navbar-menu > ul > li.current-menu-item > a {
-    color: #000;
-  }
-  
-  .navbar-menu > ul > li.current-menu-item > a::before {
-    background-color: #000;
-  }
-  
-  .navbar-menu li {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  
-  .navbar-button {
-    flex: 0 0 auto;
-  }
+
+/* Menu item hover styles */
+.navbar-menu > ul > li > a:hover {
+  color: #000;
+}
+
+.navbar-menu > ul > li > a:hover::before {
+  background-color: #000;
+}
+
+/* Active menu item styles */
+.navbar-menu > ul > li.current-menu-item > a {
+  color: #000;
+}
+
+.navbar-menu > ul > li.current-menu-item > a::before {
+  background-color: #000;
+}
+
+/* Menu item spacing */
+.navbar-menu li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+/* Navbar button styles */
+.navbar-button {
+  flex: 0 0 auto;
+}
+
+/* Remove padding and margin from the section */
+.elementor-section {
+  padding: 0 !important;
+  margin: 0 !important;
+}

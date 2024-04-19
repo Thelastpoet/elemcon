@@ -16,7 +16,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __( 'Navbar Widget', 'navbar' );
+        return __( 'Navbar', 'navbar' );
     }
 
     public function get_icon() {
@@ -38,7 +38,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         );
 
         // layout controls
-        $this->add_control(
+        $this->add_responsive_control(
             'navbar_direction',
             [
                 'label' => __( 'Navbar Direction', 'navbar' ),
@@ -58,7 +58,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'menu_position',
             [
                 'label' => __( 'Menu Position', 'navbar' ),
@@ -121,10 +121,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         );
 
         // Site identity controls
-        $this->add_control(
+        $this->add_responsive_control(
             'logo_type',
             [
-                'label' => __( 'Logo Type', 'edit-navbar' ),
+                'label' => __( 'Type', 'edit-navbar' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'site_logo',
                 'options' => [
@@ -191,7 +191,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
-                    [ 'menu_title' => __( 'Pro Access', 'navbar' ) ],
+                    [ 'menu_title' => __( 'Our Work', 'navbar' ) ],
+                    [ 'menu_title' => __('About', 'navbar') ],
+                    [ 'menu_title' => __('Blog', 'navbar') ],
+                    [ 'menu_title' => __('Contact', 'navbar') ],
                 ],
                 'title_field' => '{{{ menu_title }}}',
             ]
@@ -266,7 +269,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                         'px' => [
                             'min' => 1, 
                             'max' => 50, 
-                            'step' => 1
+                            'step' => 5
                         ],
                         '%' => [
                             'min' => 1,
@@ -313,6 +316,33 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     'condition' => [
                         'logo_type' => 'site_title',
                     ],
+                    'fields_options' => [
+                        'typography' => ['default' => 'yes'],
+                        'font_family' => [
+                            'default' => 'Poppins',
+                        ],
+                        'font_weight' => [
+                            'default' => '500',
+                        ],
+                        'font_size' => [
+                            'default' => [
+                                'unit' => 'px',
+                                'size' => 18,
+                            ],
+                        ],
+                        'line_height' => [
+                            'default' => [
+                                'unit' => 'px',
+                                'size' => 20,
+                            ],
+                        ],
+                        'text_align' => [
+                            'default' => 'center',
+                        ],
+                        'color' => [
+                            'default' => '#171515',
+                        ],
+                    ]
                 ]
             );
 
@@ -360,6 +390,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'label' => __( 'Typography', 'navbar' ),
                 'selector' => '{{WRAPPER}} .navbar-menu > ul > li > a',
                 'fields_options' => [
+                    'typography' => ['default' => 'yes'],
                     'font_family' => [
                         'default' => 'Poppins',
                     ],
@@ -573,6 +604,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 'label' => __('Typography', 'navbar'),
                 'selector' => '{{WRAPPER}} .navbar-button',
                 'fields_options' => [
+                    'typography' => ['default' => 'yes'],
                     'font_family' => [
                         'default' => 'Poppins',
                     ],
@@ -1344,7 +1376,8 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     'separator' => 'before',
                 ]
             );
-            $this->end_controls_section();          
+            
+        $this->end_controls_section();          
 
     }
 
@@ -1360,10 +1393,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $menu_items = $settings['menu_items'];
         $pointer = $settings['pointer'];
         $logo_type = $settings['logo_type'];
-        $site_logo = $settings['site_logo']['url'];
+        $site_logo = isset($settings['site_logo']['url']) ? $settings['site_logo']['url'] : '';
         $site_title = get_bloginfo('name');
         $button_text = $settings['button_text'];
-        $button_link = $settings['button_link']['url'];
+        $button_link = isset($settings['button_link']['url']) ? $settings['button_link']['url'] : '';
         $button_icon = $settings['button_icon'];
     
         $full_width = $settings['full_width'];
@@ -1507,7 +1540,5 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         </div>
         <?php
         
-    }
-
-    
+    }    
 }
