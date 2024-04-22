@@ -16,7 +16,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __( 'Navbar Widget', 'navbar' );
+        return esc_html__( 'Navbar', 'navbar' );
     }
 
     public function get_icon() {
@@ -27,29 +27,33 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         return [ 'general' ];
     }
 
+    public function get_custom_help_url() {
+		return '#';
+	}
+
     protected function _register_controls() {
         // Content Tab
         $this->start_controls_section(
             'Layout_section',
             [
-                'label' => __( 'Layout', 'navbar' ),
+                'label' => esc_html__( 'Layout', 'navbar' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
 
         // layout controls
-        $this->add_control(
+        $this->add_responsive_control(
             'navbar_direction',
             [
-                'label' => __( 'Navbar Direction', 'navbar' ),
+                'label' => esc_html__( 'Navbar Direction', 'navbar' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'navbar' ),
+                        'title' => esc_html__( 'Left', 'navbar' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'navbar' ),
+                        'title' => esc_html__( 'Right', 'navbar' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -58,22 +62,22 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'menu_position',
             [
-                'label' => __( 'Menu Position', 'navbar' ),
+                'label' => esc_html__( 'Menu Position', 'navbar' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'navbar' ),
+                        'title' => esc_html__( 'Left', 'navbar' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'navbar' ),
+                        'title' => esc_html__( 'Center', 'navbar' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'navbar' ),
+                        'title' => esc_html__( 'Right', 'navbar' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -85,13 +89,13 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'pointer',
             [
-                'label' => __( 'Pointer', 'navbar' ),
+                'label' => esc_html__( 'Pointer', 'navbar' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'none',
                 'options' => [
-                    'none'  => __( 'None', 'navbar' ),
-                    'underline' => __( 'Underline', 'navbar' ),
-                    'background' => __( 'Background', 'navbar' ),
+                    'none'  => esc_html__( 'None', 'navbar' ),
+                    'underline' => esc_html__( 'Underline', 'navbar' ),
+                    'background' => esc_html__( 'Background', 'navbar' ),
                 ],
             ]
         );
@@ -99,13 +103,13 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'mobile_dropdown',
             [
-                'label' => __( 'Mobile Dropdown', 'navbar' ),
+                'label' => esc_html__( 'Mobile Dropdown', 'navbar' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'tablet',
                 'options' => [
-                    'tablet'  => __( 'Tablet', 'navbar' ),
-                    'mobile' => __( 'Mobile', 'navbar' ),
-                    'none' => __( 'None', 'navbar' ),
+                    'tablet'  => esc_html__( 'Tablet', 'navbar' ),
+                    'mobile' => esc_html__( 'Mobile', 'navbar' ),
+                    'none' => esc_html__( 'None', 'navbar' ),
                 ],
             ]
         );
@@ -115,21 +119,21 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'site_identity_section',
             [
-                'label' => __( 'Site Identity', 'navbar' ),
+                'label' => esc_html__( 'Site Identity', 'navbar' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
 
         // Site identity controls
-        $this->add_control(
+        $this->add_responsive_control(
             'logo_type',
             [
-                'label' => __( 'Logo Type', 'edit-navbar' ),
+                'label' => esc_html__( 'Type', 'edit-navbar' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'site_logo',
                 'options' => [
-                    'site_logo'  => __( 'Site Logo', 'edit-navbar' ),
-                    'site_title' => __( 'Site Title', 'edit-navbar' ),
+                    'site_logo'  => esc_html__( 'Site Logo', 'edit-navbar' ),
+                    'site_title' => esc_html__( 'Site Title', 'edit-navbar' ),
                 ],
             ]
         );
@@ -137,7 +141,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'site_logo',
             [
-                'label' => __( 'Site Logo', 'edit-navbar' ),
+                'label' => esc_html__( 'Site Logo', 'edit-navbar' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -153,7 +157,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'menu_section',
             [
-                'label' => __( 'Menu', 'navbar' ),
+                'label' => esc_html__( 'Menu', 'navbar' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -164,9 +168,9 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $repeater->add_control(
             'menu_title', // Control ID
             [
-                'label' => __('Title', 'navbar'),
+                'label' => esc_html__('Title', 'navbar'),
                 'type' => Controls_Manager::TEXT,
-                'default' => __('Menu Item', 'navbar'),
+                'default' => esc_html__('Menu Item', 'navbar'),
                 'dynamic' => [
                     'active' => true,
                 ]
@@ -176,7 +180,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $repeater->add_control(
             'menu_link', 
             [
-                'label' => __('Link', 'navbar'),
+                'label' => esc_html__('Link', 'navbar'),
                 'type' => Controls_Manager::URL,
                 'dynamic' => [
                     'active' => true,
@@ -187,11 +191,14 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'menu_items', 
             [
-                'label' => __( 'Menu Items', 'navbar' ),
+                'label' => esc_html__( 'Menu Items', 'navbar' ),
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
-                    [ 'menu_title' => __( 'Pro Access', 'navbar' ) ],
+                    [ 'menu_title' => esc_html__( 'Our Work', 'navbar' ) ],
+                    [ 'menu_title' => esc_html__('About', 'navbar') ],
+                    [ 'menu_title' => esc_html__('Blog', 'navbar') ],
+                    [ 'menu_title' => esc_html__('Contact', 'navbar') ],
                 ],
                 'title_field' => '{{{ menu_title }}}',
             ]
@@ -203,7 +210,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'button_section',
             [
-                'label' => __( 'CTA Button', 'navbar' ),
+                'label' => esc_html__( 'CTA Button', 'navbar' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -212,9 +219,9 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_text',
             [
-                'label' => __( 'Button Text', 'navbar' ),
+                'label' => esc_html__( 'Button Text', 'navbar' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'Get Started', 'navbar' ),
+                'default' => esc_html__( 'Get Started', 'navbar' ),
                 'dynamic' => [
                     'active' => true, 
                 ]
@@ -224,7 +231,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_link',
             [
-                'label' => __( 'Link', 'navbar' ),
+                'label' => esc_html__( 'Link', 'navbar' ),
                 'type' => Controls_Manager::URL,
                 'dynamic' => [
                     'active' => true, 
@@ -238,7 +245,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_icon',
             [
-                'label' => __( 'Icon', 'navbar' ),
+                'label' => esc_html__( 'Icon', 'navbar' ),
                 'type' => Controls_Manager::ICONS,
                 'skin' => 'inline',
             ]
@@ -250,7 +257,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'style_section',
             [
-                'label' => __( 'Logo', 'navbar' ),
+                'label' => esc_html__( 'Logo', 'navbar' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
             );
@@ -259,14 +266,14 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_responsive_control( 
                 'logo_width',
                 [
-                    'label' => __( 'Width', 'navbar' ),
+                    'label' => esc_html__( 'Width', 'navbar' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ], 
                     'range' => [
                         'px' => [
                             'min' => 1, 
-                            'max' => 50, 
-                            'step' => 1
+                            'max' => 200, 
+                            'step' => 5
                         ],
                         '%' => [
                             'min' => 1,
@@ -276,7 +283,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     ],
                     'default' => [ 
                         'unit' => 'px',
-                        'size' => 20 
+                        'size' => 40 
                     ],
                     'selectors' => [
                         '{{WRAPPER}} .navbar-logo' => 'width: {{SIZE}}{{UNIT}};',
@@ -292,7 +299,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'site_title_color',
                 [
-                    'label' => __( 'Text Color', 'navbar' ),
+                    'label' => esc_html__( 'Text Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'default' => '#000000',
                     'selectors' => [
@@ -308,11 +315,38 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'site_title_typography',
-                    'label' => __( 'Typography', 'navbar' ),
+                    'label' => esc_html__( 'Typography', 'navbar' ),
                     'selector' => '{{WRAPPER}} .navbar-logo a',
                     'condition' => [
                         'logo_type' => 'site_title',
                     ],
+                    'fields_options' => [
+                        'typography' => ['default' => 'yes'],
+                        'font_family' => [
+                            'default' => 'Poppins',
+                        ],
+                        'font_weight' => [
+                            'default' => '500',
+                        ],
+                        'font_size' => [
+                            'default' => [
+                                'unit' => 'px',
+                                'size' => 18,
+                            ],
+                        ],
+                        'line_height' => [
+                            'default' => [
+                                'unit' => 'px',
+                                'size' => 20,
+                            ],
+                        ],
+                        'text_align' => [
+                            'default' => 'center',
+                        ],
+                        'color' => [
+                            'default' => '#171515',
+                        ],
+                    ]
                 ]
             );
 
@@ -323,7 +357,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'spacing_section',
             [
-                'label' => __( 'Menu', 'navbar' ),
+                'label' => esc_html__( 'Menu', 'navbar' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -332,7 +366,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'menu_item_spacing',
             [
-                'label' => __( 'Spacing', 'navbar' ),
+                'label' => esc_html__( 'Spacing', 'navbar' ),
                 'type' => Controls_Manager::SLIDER, 
                 'size_units' => [ 'px' ], 
                 'range' => [
@@ -357,9 +391,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'menu_typography',
-                'label' => __( 'Typography', 'navbar' ),
+                'label' => esc_html__( 'Typography', 'navbar' ),
                 'selector' => '{{WRAPPER}} .navbar-menu > ul > li > a',
                 'fields_options' => [
+                    'typography' => ['default' => 'yes'],
                     'font_family' => [
                         'default' => 'Poppins',
                     ],
@@ -392,11 +427,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_tabs( 'menu_colors_tabs' );
 
         // Normal Tab
-        $this->start_controls_tab( 'menu_normal_tab', [ 'label' => __( 'Normal', 'navbar' ) ] );
+        $this->start_controls_tab( 'menu_normal_tab', [ 'label' => esc_html__( 'Normal', 'navbar' ) ] );
             $this->add_control(
                 'menu_text_color',
                 [
-                    'label' => __( 'Text Color', 'navbar' ),
+                    'label' => esc_html__( 'Text Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'default' => '#171515',
                     'selectors' => [
@@ -408,7 +443,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_initial_state',
                 [
-                    'label' => __( 'Pointer Initial State', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Initial State', 'navbar' ),
                     'type' => Controls_Manager::HIDDEN,
                     'default' => '',
                     'selectors' => [
@@ -420,7 +455,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_color_normal',
                 [
-                    'label' => __( 'Pointer Color', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .navbar-menu > ul > li > a::before' => 'background-color: {{VALUE}};',
@@ -434,14 +469,14 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_animation_normal',
                 [
-                    'label' => __( 'Pointer Animation', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Animation', 'navbar' ),
                     'type' => Controls_Manager::SELECT,
                     'default' => 'none',
                     'options' => [
-                        'none'  => __( 'None', 'navbar' ),
-                        'fade'  => __( 'Fade', 'navbar' ),
-                        'slide' => __( 'Slide', 'navbar' ),
-                        'grow'  => __( 'Grow', 'navbar' ),
+                        'none'  => esc_html__( 'None', 'navbar' ),
+                        'fade'  => esc_html__( 'Fade', 'navbar' ),
+                        'slide' => esc_html__( 'Slide', 'navbar' ),
+                        'grow'  => esc_html__( 'Grow', 'navbar' ),
                     ],
                     'selectors' => [
                         '{{WRAPPER}} .navbar-menu > ul > li > a::before' => 'transition: all 0.3s;',
@@ -451,11 +486,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->end_controls_tab();
 
         // Hover Tab
-        $this->start_controls_tab( 'menu_hover_tab', [ 'label' => __( 'Hover', 'navbar' ) ] );
+        $this->start_controls_tab( 'menu_hover_tab', [ 'label' => esc_html__( 'Hover', 'navbar' ) ] );
             $this->add_control(
                 'menu_text_color_hover',
                 [
-                    'label' => __( 'Text Color', 'navbar' ),
+                    'label' => esc_html__( 'Text Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'default' => '#0148FF',
                     'selectors' => [
@@ -468,7 +503,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_color_hover',
                 [
-                    'label' => __( 'Pointer Color', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'default' => '#0148FF',
                     'selectors' => [
@@ -484,14 +519,14 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_animation_hover',
                 [
-                    'label' => __( 'Pointer Animation', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Animation', 'navbar' ),
                     'type' => Controls_Manager::SELECT,
                     'default' => 'none',
                     'options' => [
-                        'none'  => __( 'None', 'navbar' ),
-                        'fade'  => __( 'Fade', 'navbar' ),
-                        'slide' => __( 'Slide', 'navbar' ),
-                        'grow'  => __( 'Grow', 'navbar' ),
+                        'none'  => esc_html__( 'None', 'navbar' ),
+                        'fade'  => esc_html__( 'Fade', 'navbar' ),
+                        'slide' => esc_html__( 'Slide', 'navbar' ),
+                        'grow'  => esc_html__( 'Grow', 'navbar' ),
                     ],
                     'selectors' => [
                         '{{WRAPPER}} .navbar-menu > ul > li > a:hover::before' => 'transition: all 0.3s;',
@@ -504,11 +539,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->end_controls_tab();
 
         // Active Tab
-        $this->start_controls_tab( 'menu_active_tab', [ 'label' => __( 'Active', 'navbar' ) ] );
+        $this->start_controls_tab( 'menu_active_tab', [ 'label' => esc_html__( 'Active', 'navbar' ) ] );
             $this->add_control(
                 'menu_text_color_active',
                 [
-                    'label' => __( 'Text Color', 'navbar' ),
+                    'label' => esc_html__( 'Text Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'default' => '#FF00F5',
                     'selectors' => [
@@ -523,7 +558,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_color_active',
                 [
-                    'label' => __( 'Pointer Color', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Color', 'navbar' ),
                     'type' => Controls_Manager::COLOR,
                     'default' => '#FF00F5',
                     'selectors' => [
@@ -535,14 +570,14 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'menu_pointer_animation_active',
                 [
-                    'label' => __( 'Pointer Animation', 'navbar' ),
+                    'label' => esc_html__( 'Pointer Animation', 'navbar' ),
                     'type' => Controls_Manager::SELECT,
                     'default' => 'none',
                     'options' => [
-                        'none'  => __( 'None', 'navbar' ),
-                        'fade'  => __( 'Fade', 'navbar' ),
-                        'slide' => __( 'Slide', 'navbar' ),
-                        'grow'  => __( 'Grow', 'navbar' ),
+                        'none'  => esc_html__( 'None', 'navbar' ),
+                        'fade'  => esc_html__( 'Fade', 'navbar' ),
+                        'slide' => esc_html__( 'Slide', 'navbar' ),
+                        'grow'  => esc_html__( 'Grow', 'navbar' ),
                     ],
                     'selectors' => [
                         '{{WRAPPER}} .navbar-menu > ul > li.current-menu-item > a::before' => 'transition: all 0.3s;',
@@ -560,7 +595,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'button_style_section',
             [
-                'label' => __( 'Button', 'navbar' ),
+                'label' => esc_html__( 'Button', 'navbar' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -570,9 +605,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'label' => __('Typography', 'navbar'),
+                'label' => esc_html__('Typography', 'navbar'),
                 'selector' => '{{WRAPPER}} .navbar-button',
                 'fields_options' => [
+                    'typography' => ['default' => 'yes'],
                     'font_family' => [
                         'default' => 'Poppins',
                     ],
@@ -599,15 +635,15 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_icon_position',
             [
-                'label' => __( 'Icon Position', 'navbar' ),
+                'label' => esc_html__( 'Icon Position', 'navbar' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'navbar' ),
+                        'title' => esc_html__( 'Left', 'navbar' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'navbar' ),
+                        'title' => esc_html__( 'Right', 'navbar' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -620,7 +656,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_icon_spacing',
             [
-                'label' => __( 'Icon Spacing', 'navbar' ),
+                'label' => esc_html__( 'Icon Spacing', 'navbar' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -640,12 +676,12 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_tabs( 'button_style_tabs' );
 
         // Normal Tab
-        $this->start_controls_tab( 'button_normal_tab', [ 'label' => __( 'Normal', 'navbar' ) ] );
+        $this->start_controls_tab( 'button_normal_tab', [ 'label' => esc_html__( 'Normal', 'navbar' ) ] );
 
         $this->add_control(
             'button_text_color_normal',
             [
-                'label' => __( 'Text Color', 'navbar' ),
+                'label' => esc_html__( 'Text Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
@@ -658,7 +694,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_icon_color_normal',
             [
-                'label' => __( 'Icon Color', 'navbar' ),
+                'label' => esc_html__( 'Icon Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .navbar-button i' => 'color: {{VALUE}};',
@@ -670,7 +706,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_background_color_normal',
             [
-                'label' => __( 'Background Color', 'navbar' ),
+                'label' => esc_html__( 'Background Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#000000',
                 'selectors' => [
@@ -683,10 +719,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_border_normal',
             [
-                'label' => __( 'Border', 'navbar' ),
+                'label' => esc_html__( 'Border', 'navbar' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'navbar' ),
-                'label_off' => __( 'No', 'navbar' ),
+                'label_on' => esc_html__( 'Yes', 'navbar' ),
+                'label_off' => esc_html__( 'No', 'navbar' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -695,7 +731,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_border_radius_normal',
             [
-                'label' => __( 'Border Radius', 'navbar' ),
+                'label' => esc_html__( 'Border Radius', 'navbar' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'condition' => [
@@ -719,7 +755,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => __('Padding', 'navbar'),
+                'label' => esc_html__('Padding', 'navbar'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
@@ -740,7 +776,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'button_box_shadow_normal',
-                'label' => __( 'Box Shadow', 'navbar' ),
+                'label' => esc_html__( 'Box Shadow', 'navbar' ),
                 'selector' => '{{WRAPPER}} .navbar-button a',
             ]
         );
@@ -748,12 +784,12 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->end_controls_tab();
 
         // Hover Tab
-        $this->start_controls_tab( 'button_hover_tab', [ 'label' => __( 'Hover', 'navbar' ) ] );
+        $this->start_controls_tab( 'button_hover_tab', [ 'label' => esc_html__( 'Hover', 'navbar' ) ] );
 
         $this->add_control(
             'button_text_color_hover',
             [
-                'label' => __( 'Text Color', 'navbar' ),
+                'label' => esc_html__( 'Text Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .navbar-button:hover' => 'color: {{VALUE}};',
@@ -764,7 +800,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_icon_color_hover',
             [
-                'label' => __( 'Icon Color', 'navbar' ),
+                'label' => esc_html__( 'Icon Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .navbar-button:hover i' => 'color: {{VALUE}};',
@@ -775,7 +811,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_background_color_hover',
             [
-                'label' => __( 'Background Color', 'navbar' ),
+                'label' => esc_html__( 'Background Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .navbar-button:hover' => 'background-color: {{VALUE}};',
@@ -786,10 +822,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_border_hover',
             [
-                'label' => __( 'Border', 'navbar' ),
+                'label' => esc_html__( 'Border', 'navbar' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'navbar' ),
-                'label_off' => __( 'No', 'navbar' ),
+                'label_on' => esc_html__( 'Yes', 'navbar' ),
+                'label_off' => esc_html__( 'No', 'navbar' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -798,7 +834,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'button_border_radius_hover',
             [
-                'label' => __( 'Border Radius', 'navbar' ),
+                'label' => esc_html__( 'Border Radius', 'navbar' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'condition' => [
@@ -822,7 +858,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'button_box_shadow_hover',
-                'label' => __( 'Box Shadow', 'navbar' ),
+                'label' => esc_html__( 'Box Shadow', 'navbar' ),
                 'selector' => '{{WRAPPER}} .navbar-button a:hover',
             ]
         );
@@ -835,7 +871,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'background_section',
             [
-                'label' => __( 'Background', 'navbar' ),
+                'label' => esc_html__( 'Background', 'navbar' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -844,15 +880,15 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'background_type',
             [
-                'label' => __( 'Type', 'navbar' ),
+                'label' => esc_html__( 'Type', 'navbar' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'classic' => [
-                        'title' => __( 'Classic', 'navbar' ),
+                        'title' => esc_html__( 'Classic', 'navbar' ),
                         'icon' => 'eicon-paint-brush',
                     ],
                     'gradient' => [
-                        'title' => __( 'Gradient', 'navbar' ),
+                        'title' => esc_html__( 'Gradient', 'navbar' ),
                         'icon' => 'eicon-barcode',
                     ],
                 ],
@@ -868,7 +904,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'border_section',
             [
-                'label' => __( 'Border', 'navbar' ),
+                'label' => esc_html__( 'Border', 'navbar' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -877,10 +913,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'bottom_border',
             [
-                'label' => __( 'Bottom Border', 'navbar' ),
+                'label' => esc_html__( 'Bottom Border', 'navbar' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'navbar' ),
-                'label_off' => __( 'No', 'navbar' ),
+                'label_on' => esc_html__( 'Yes', 'navbar' ),
+                'label_off' => esc_html__( 'No', 'navbar' ),
                 'return_value' => 'yes',
                 'default' => 'no',
                 'selectors' => [
@@ -893,14 +929,14 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'bottom_border_style',
             [
-                'label' => __( 'Border Style', 'navbar' ),
+                'label' => esc_html__( 'Border Style', 'navbar' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'solid' => __( 'Solid', 'navbar' ),
-                    'dashed' => __( 'Dashed', 'navbar' ),
-                    'dotted' => __( 'Dotted', 'navbar' ),
-                    'double' => __( 'Double', 'navbar' ),
-                    'none' => __( 'None', 'navbar' ),
+                    'solid' => esc_html__( 'Solid', 'navbar' ),
+                    'dashed' => esc_html__( 'Dashed', 'navbar' ),
+                    'dotted' => esc_html__( 'Dotted', 'navbar' ),
+                    'double' => esc_html__( 'Double', 'navbar' ),
+                    'none' => esc_html__( 'None', 'navbar' ),
                 ],
                 'default' => 'solid',
 
@@ -917,7 +953,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'bottom_border_color',
             [
-                'label' => __( 'Border Color', 'navbar' ),
+                'label' => esc_html__( 'Border Color', 'navbar' ),
                 'type' => Controls_Manager::COLOR,
 
                 'condition' => [
@@ -933,7 +969,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'bottom_border_width',
             [
-                'label' => __( 'Border Width', 'navbar' ),
+                'label' => esc_html__( 'Border Width', 'navbar' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -960,10 +996,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->add_control(
             'box_shadow',
             [
-                'label' => __( 'Box Shadow', 'navbar' ),
+                'label' => esc_html__( 'Box Shadow', 'navbar' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => __( 'Yes', 'navbar' ),
-                'label_off' => __( 'No', 'navbar' ),
+                'label_on' => esc_html__( 'Yes', 'navbar' ),
+                'label_off' => esc_html__( 'No', 'navbar' ),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -974,7 +1010,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'header_box_shadow',
-                'label' => __( 'Box Shadow', 'navbar' ),
+                'label' => esc_html__( 'Box Shadow', 'navbar' ),
                 'condition' => [
                     'box_shadow' => 'yes',
                 ],
@@ -988,7 +1024,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'advanced_section',
             [
-                'label' => __( 'Advanced', 'navbar' ),
+                'label' => esc_html__( 'Advanced', 'navbar' ),
                 'tab' => Controls_Manager::TAB_ADVANCED,
             ]
             );
@@ -997,10 +1033,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'full_width',
                 [
-                    'label' => __( 'Full Width', 'navbar' ),
+                    'label' => esc_html__( 'Full Width', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'yes',
                 ]
@@ -1009,7 +1045,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_responsive_control(
                 'content_width',
                 [
-                    'label' => __( 'Content Width', 'navbar' ),
+                    'label' => esc_html__( 'Content Width', 'navbar' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -1036,7 +1072,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_responsive_control(
                 'top_padding',
                 [
-                    'label' => __( 'Top Padding', 'navbar' ),
+                    'label' => esc_html__( 'Top Padding', 'navbar' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -1063,7 +1099,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_responsive_control(
                 'bottom_padding',
                 [
-                    'label' => __( 'Bottom Padding', 'navbar' ),
+                    'label' => esc_html__( 'Bottom Padding', 'navbar' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -1090,11 +1126,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'element_spacing',
                 [
-                    'label' => __( 'Element Spacing', 'navbar' ),
+                    'label' => esc_html__( 'Element Spacing', 'navbar' ),
                     'type' => Controls_Manager::SELECT,
                     'options' => [
-                        'default' => __( 'Default', 'navbar' ),
-                        'none' => __( 'None', 'navbar' ),
+                        'default' => esc_html__( 'Default', 'navbar' ),
+                        'none' => esc_html__( 'None', 'navbar' ),
                     ],
                     'default' => 'default',
                 ]
@@ -1105,7 +1141,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->start_controls_section(
                 'advanced_scroll_section',
                 [
-                    'label' => __( 'Scroll Settings', 'navbar' ),
+                    'label' => esc_html__( 'Scroll Settings', 'navbar' ),
                     'tab' => Controls_Manager::TAB_ADVANCED,
                 ]
             );
@@ -1114,13 +1150,13 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'apply_effects_on',
                 [
-                    'label' => __( 'Apply Effects On', 'navbar' ),
+                    'label' => esc_html__( 'Apply Effects On', 'navbar' ),
                     'type' => Controls_Manager::SELECT2,
                     'multiple' => true,
                     'options' => [
-                        'desktop' => __( 'Desktop', 'navbar' ),
-                        'tablet' => __( 'Tablet', 'navbar' ),
-                        'mobile' => __( 'Mobile', 'navbar' ),
+                        'desktop' => esc_html__( 'Desktop', 'navbar' ),
+                        'tablet' => esc_html__( 'Tablet', 'navbar' ),
+                        'mobile' => esc_html__( 'Mobile', 'navbar' ),
                     ],
                     'default' => [ 'desktop', 'tablet', 'mobile' ],
                 ]
@@ -1130,7 +1166,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'scroll_distance',
                 [
-                    'label' => __( 'Scroll Distance', 'navbar' ),
+                    'label' => esc_html__( 'Scroll Distance', 'navbar' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px' ],
                     'range' => [
@@ -1151,7 +1187,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'navbar_settings',
                 [
-                    'label' => __( 'Navbar', 'navbar' ),
+                    'label' => esc_html__( 'Navbar', 'navbar' ),
                     'type' => Controls_Manager::HEADING,
                     'separator' => 'before',
                 ]
@@ -1160,10 +1196,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'sticky',
                 [
-                    'label' => __( 'Sticky', 'navbar' ),
+                    'label' => esc_html__( 'Sticky', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'no',
                 ]
@@ -1172,10 +1208,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'adjust_on_scroll',
                 [
-                    'label' => __( 'Adjust on Scroll', 'navbar' ),
+                    'label' => esc_html__( 'Adjust on Scroll', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'no',
                 ]
@@ -1184,10 +1220,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'hide_on_scroll',
                 [
-                    'label' => __( 'Hide on Scroll', 'navbar' ),
+                    'label' => esc_html__( 'Hide on Scroll', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'no',
                 ]
@@ -1197,7 +1233,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'logo_settings',
                 [
-                    'label' => __( 'Logo', 'navbar' ),
+                    'label' => esc_html__( 'Logo', 'navbar' ),
                     'type' => Controls_Manager::HEADING,
                     'separator' => 'before',
                 ]
@@ -1206,12 +1242,12 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'logo_on_scroll',
                 [
-                    'label' => __( 'On Scroll', 'navbar' ),
+                    'label' => esc_html__( 'On Scroll', 'navbar' ),
                     'type' => Controls_Manager::SELECT,
                     'options' => [
-                        'none' => __( 'None', 'navbar' ),
-                        'shrink' => __( 'Shrink Logo', 'navbar' ),
-                        'alternative' => __( 'Display Alternative Logo', 'navbar' ),
+                        'none' => esc_html__( 'None', 'navbar' ),
+                        'shrink' => esc_html__( 'Shrink Logo', 'navbar' ),
+                        'alternative' => esc_html__( 'Display Alternative Logo', 'navbar' ),
                     ],
                     'default' => 'none',
                 ]
@@ -1223,7 +1259,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->start_controls_section(
                 'advanced_responsive_section',
                 [
-                    'label' => __( 'Responsive', 'navbar' ),
+                    'label' => esc_html__( 'Responsive', 'navbar' ),
                     'tab' => Controls_Manager::TAB_ADVANCED,
                 ]
             );
@@ -1232,7 +1268,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'responsive_description',
                 [
-                    'raw' => __( 'Responsive visibility will take effect only on preview mode or live page, and not while editing in Elementor.', 'navbar' ),
+                    'raw' => esc_html__( 'Responsive visibility will take effect only on preview mode or live page, and not while editing in Elementor.', 'navbar' ),
                     'type' => Controls_Manager::RAW_HTML,
                     'content_classes' => 'elementor-descriptor',
                 ]
@@ -1242,10 +1278,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'hide_on_desktop',
                 [
-                    'label' => __( 'Hide On Desktop', 'navbar' ),
+                    'label' => esc_html__( 'Hide On Desktop', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'no',
                 ]
@@ -1255,10 +1291,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'hide_on_tablet',
                 [
-                    'label' => __( 'Hide On Tablet', 'navbar' ),
+                    'label' => esc_html__( 'Hide On Tablet', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'no',
                 ]
@@ -1268,22 +1304,21 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'hide_on_mobile',
                 [
-                    'label' => __( 'Hide On Mobile', 'navbar' ),
+                    'label' => esc_html__( 'Hide On Mobile', 'navbar' ),
                     'type' => Controls_Manager::SWITCHER,
-                    'label_on' => __( 'Yes', 'navbar' ),
-                    'label_off' => __( 'No', 'navbar' ),
+                    'label_on' => esc_html__( 'Yes', 'navbar' ),
+                    'label_off' => esc_html__( 'No', 'navbar' ),
                     'return_value' => 'yes',
                     'default' => 'no',
                 ]
             );
-
 
             $this->end_controls_section();
 
             $this->start_controls_section(
                 'advanced_custom_section',
                 [
-                    'label' => __( 'Custom', 'navbar' ),
+                    'label' => esc_html__( 'Custom', 'navbar' ),
                     'tab' => Controls_Manager::TAB_ADVANCED,
                 ]
             );
@@ -1293,13 +1328,13 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'css_id',
                 [
-                    'label' => __( 'CSS ID', 'navbar' ),
+                    'label' => esc_html__( 'CSS ID', 'navbar' ),
                     'type' => Controls_Manager::TEXT,
                     'dynamic' => [
                         'active' => true,
                     ],
                     'default' => '',
-                    'title' => __( 'Add your custom ID without the "#" prefix.', 'navbar' ),
+                    'title' => esc_html__( 'Add your custom ID without the "#" prefix.', 'navbar' ),
                     'separator' => 'before',
                 ]
             );
@@ -1308,13 +1343,13 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'css_classes',
                 [
-                    'label' => __( 'CSS Classes', 'navbar' ),
+                    'label' => esc_html__( 'CSS Classes', 'navbar' ),
                     'type' => Controls_Manager::TEXT,
                     'dynamic' => [
                         'active' => true,
                     ],
                     'prefix_class' => '',
-                    'title' => __( 'Add your custom class without the dot. e.g: my-class', 'navbar' ),
+                    'title' => esc_html__( 'Add your custom class without the dot. e.g: my-class', 'navbar' ),
                 ]
             );
 
@@ -1322,7 +1357,7 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'custom_css',
                 [
-                    'label' => __( 'Custom CSS', 'navbar' ),
+                    'label' => esc_html__( 'Custom CSS', 'navbar' ),
                     'type' => Controls_Manager::CODE,
                     'language' => 'css',
                     'rows' => 20,
@@ -1334,22 +1369,23 @@ class Navbar_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'custom_attributes',
                 [
-                    'label' => __( 'Custom Attributes', 'navbar' ),
+                    'label' => esc_html__( 'Custom Attributes', 'navbar' ),
                     'type' => Controls_Manager::TEXTAREA,
                     'dynamic' => [
                         'active' => true,
                     ],
-                    'placeholder' => __( 'key|value', 'navbar' ),
-                    'description' => __( 'Set custom attributes for the wrapper element. Each attribute in a separate line. Separate attribute key from the value using | character.', 'navbar' ),
+                    'placeholder' => esc_html__( 'key|value', 'navbar' ),
+                    'description' => esc_html__( 'Set custom attributes for the wrapper element. Each attribute in a separate line. Separate attribute key from the value using | character.', 'navbar' ),
                     'separator' => 'before',
                 ]
             );
-            $this->end_controls_section();          
+            
+        $this->end_controls_section();         
 
     }
 
     /**
-     * Render the widget
+     * Render the navbar widget
      */
 
      protected function render() {
@@ -1360,10 +1396,10 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         $menu_items = $settings['menu_items'];
         $pointer = $settings['pointer'];
         $logo_type = $settings['logo_type'];
-        $site_logo = $settings['site_logo']['url'];
+        $site_logo = isset($settings['site_logo']['url']) ? $settings['site_logo']['url'] : '';
         $site_title = get_bloginfo('name');
         $button_text = $settings['button_text'];
-        $button_link = $settings['button_link']['url'];
+        $button_link = isset($settings['button_link']['url']) ? $settings['button_link']['url'] : '';
         $button_icon = $settings['button_icon'];
     
         $full_width = $settings['full_width'];
@@ -1419,12 +1455,16 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                 <?php if (!empty($button_text)) : ?>
                     <div class="navbar-button">
                         <a href="<?php echo !empty($button_link) ? esc_url($button_link) : 'javascript:void(0);'; ?>">
-                            <?php if ($settings['button_icon_position'] === 'left') : ?>
-                                <i class="<?php echo esc_attr($button_icon['value']); ?> icon-left"></i>
+                            <?php if (is_array($button_icon) && !empty($button_icon['value'])) : ?>
+                                <?php if ($settings['button_icon_position'] === 'left') : ?>
+                                    <i class="<?php echo esc_attr($button_icon['value']); ?> icon-left"></i>
+                                <?php endif; ?>
                             <?php endif; ?>
                             <?php echo esc_html($button_text); ?>
-                            <?php if ($settings['button_icon_position'] === 'right') : ?>
-                                <i class="<?php echo esc_attr($button_icon['value']); ?> icon-right"></i>
+                            <?php if (is_array($button_icon) && !empty($button_icon['value'])) : ?>
+                                <?php if ($settings['button_icon_position'] === 'right') : ?>
+                                    <i class="<?php echo esc_attr($button_icon['value']); ?> icon-right"></i>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </a>
                     </div>
@@ -1494,11 +1534,11 @@ class Navbar_Widget extends \Elementor\Widget_Base {
                     <div class="navbar-button">
                         <a href="{{ buttonLink }}">
                             <# if (settings.button_icon_position === 'left') { #>
-                                <i class="{{ buttonIcon.value }}"></i>
+                                <i class="{{ buttonIcon.value }} icon-left"></i>
                             <# } #>
                             {{ buttonText }}
                             <# if (settings.button_icon_position === 'right') { #>
-                                <i class="{{ buttonIcon.value }}"></i>
+                                <i class="{{ buttonIcon.value }} icon-right"></i>
                             <# } #>
                         </a>
                     </div>
@@ -1507,7 +1547,5 @@ class Navbar_Widget extends \Elementor\Widget_Base {
         </div>
         <?php
         
-    }
-
-    
+    }    
 }
