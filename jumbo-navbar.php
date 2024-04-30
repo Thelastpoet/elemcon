@@ -41,5 +41,6 @@ add_action( 'wp_enqueue_scripts', 'enqueue_widget_styles', 20 );
 
 function enqueue_widget_scripts() {
     wp_enqueue_script('navbar-widget-script', plugins_url('assets/js/navbar-widget.js', __FILE__), ['elementor-editor'], '1.0.0', true);
+    
 }
 add_action('elementor/editor/before_enqueue_scripts', 'enqueue_widget_scripts');

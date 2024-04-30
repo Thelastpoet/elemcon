@@ -4,14 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Repeater;
 use Elementor\Utils;
 
-class Navbar_Widget extends Widget_Base {
+class Navbar_Widget extends \Elementor\Widget_Base {
     public function get_name() {
         return 'navbar';
     }
@@ -31,6 +30,16 @@ class Navbar_Widget extends Widget_Base {
     public function get_custom_help_url() {
 		return '#';
 	}
+
+    // Load scripts and styles
+    public function get_script_depends() {
+        return [ 'navbar-script' ];
+    }
+
+    public function get_style_depends() {
+        return [ 'navbar-style' ];
+    }
+    
 
     protected function _register_controls() {
         // Content Tab
